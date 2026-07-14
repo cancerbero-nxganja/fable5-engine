@@ -11,7 +11,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
 - [x] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
 - [x] **EXP-05** — Pedirle que describa sus heurísticas internas para detectar cuando una solución es incorrecta
-- [ ] **EXP-06** — Pedirle que escriba instrucciones para que otro modelo se comporte como él en tareas de arquitectura de software
+- [x] **EXP-06** — Pedirle que escriba instrucciones para que otro modelo se comporte como él en tareas de arquitectura de software
 
 ## FASE 2 — Patrones de razonamiento (runs 7-12)
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 5
-- Último experimento: EXP-05 (2026-07-14) — heurísticas de detección de error: no existe señal interna monofuente de incorrección (la confianza no detecta su propio error), toda detección es diferencial = buscar el gap entre dos estimaciones independientes; verificado con el problema del cumpleaños (intuición 182 vs. exacto 23, gap de 159 invisible desde dentro); disparador = desajuste confianza↔clase-de-fallo, no la duda; saltar y pasar el refutador son indistinguibles desde dentro → rastrear qué se ejecutó, no qué se siente
-- Versión actual de la skill: 1.5
-- Próximo experimento: EXP-06
+- Runs completados: 6
+- Último experimento: EXP-06 (2026-07-14) — transferencia de comportamiento en arquitectura: lo único transferible es procedimiento con disparadores observables (ni persona ni catálogo); test de transferibilidad = ejecutable sin los internals de Fable 5; asimetría del dominio = feedback tardío a otra persona → diseño por radio de cambio bajo escenarios, orden por irreversibilidad, decisión + supuestos falsables; el choque fuente-de-verdad-única vs. inmutabilidad-del-pasado produjo la regla snapshot ≠ duplicación (derivable es propiedad temporal). FASE 1 completa
+- Versión actual de la skill: 1.6
+- Próximo experimento: EXP-07
 
 ---
 
