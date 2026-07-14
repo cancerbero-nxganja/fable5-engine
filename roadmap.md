@@ -10,7 +10,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-02** — Pedirle que identifique los tipos de problemas donde sabe que va a fallar y por qué
 - [x] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
 - [x] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
-- [ ] **EXP-05** — Pedirle que describa sus heurísticas internas para detectar cuando una solución es incorrecta
+- [x] **EXP-05** — Pedirle que describa sus heurísticas internas para detectar cuando una solución es incorrecta
 - [ ] **EXP-06** — Pedirle que escriba instrucciones para que otro modelo se comporte como él en tareas de arquitectura de software
 
 ## FASE 2 — Patrones de razonamiento (runs 7-12)
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 4
-- Último experimento: EXP-04 (2026-07-14) — prompt óptimo de análisis de datos/anomalías: en datos no existe el oráculo ejecutable de código, se sustituye por protocolo adversarial (escalera de artefactos que clasifica-no-filtra, presupuesto de comparaciones medido: ruido puro da falsos hallazgos con P=0.82–1.0, asimetría de costos FP/FN); nueva clase G de fallo (búsqueda amplia sin presupuesto); regla de oro: exhaustivo en el porqué, silencioso en el método
-- Versión actual de la skill: 1.4
-- Próximo experimento: EXP-05
+- Runs completados: 5
+- Último experimento: EXP-05 (2026-07-14) — heurísticas de detección de error: no existe señal interna monofuente de incorrección (la confianza no detecta su propio error), toda detección es diferencial = buscar el gap entre dos estimaciones independientes; verificado con el problema del cumpleaños (intuición 182 vs. exacto 23, gap de 159 invisible desde dentro); disparador = desajuste confianza↔clase-de-fallo, no la duda; saltar y pasar el refutador son indistinguibles desde dentro → rastrear qué se ejecutó, no qué se siente
+- Versión actual de la skill: 1.5
+- Próximo experimento: EXP-06
 
 ---
 
