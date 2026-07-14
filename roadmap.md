@@ -15,7 +15,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## FASE 2 — Patrones de razonamiento (runs 7-12)
 
-- [ ] **EXP-07** — Documentar cómo Fable 5 descompone un problema de trading algorítmico
+- [x] **EXP-07** — Documentar cómo Fable 5 descompone un problema de trading algorítmico
 - [ ] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
 - [ ] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
 - [ ] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 6
-- Último experimento: EXP-06 (2026-07-14) — transferencia de comportamiento en arquitectura: lo único transferible es procedimiento con disparadores observables (ni persona ni catálogo); test de transferibilidad = ejecutable sin los internals de Fable 5; asimetría del dominio = feedback tardío a otra persona → diseño por radio de cambio bajo escenarios, orden por irreversibilidad, decisión + supuestos falsables; el choque fuente-de-verdad-única vs. inmutabilidad-del-pasado produjo la regla snapshot ≠ duplicación (derivable es propiedad temporal). FASE 1 completa
-- Versión actual de la skill: 1.6
-- Próximo experimento: EXP-07
+- Runs completados: 7
+- Último experimento: EXP-07 (2026-07-14) — descomposición de un problema de trading algorítmico: el trading es el primer dominio con **oráculo existente pero adversarial** (el backtest miente al alza por construcción) → trátalo como sospechoso primario, no juez; descompón por kill-cheapness/fail-fast (lookahead/as-of → costos y capacidad → OOS deflactado por grados de libertad → atribución a factores → ejecución → sizing); el choque "más historia" vs. "no lookahead" produjo la regla de frontera **corrección as-of** (dos timestamps: evento vs. conocimiento). Meta-hallazgo: **tipología del oráculo** (honesto/ausente/adversarial) como pregunta de apertura de dominio. Abre FASE 2
+- Versión actual de la skill: 1.7
+- Próximo experimento: EXP-08 (detección de bugs de lógica de negocio incorrecta)
 
 ---
 
