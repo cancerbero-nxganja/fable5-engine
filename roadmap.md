@@ -8,7 +8,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 - [x] **EXP-01** — Pedirle a Fable 5 que describa su propio proceso de razonamiento paso a paso en un problema matemático complejo
 - [x] **EXP-02** — Pedirle que identifique los tipos de problemas donde sabe que va a fallar y por qué
-- [ ] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
+- [x] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
 - [ ] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
 - [ ] **EXP-05** — Pedirle que describa sus heurísticas internas para detectar cuando una solución es incorrecta
 - [ ] **EXP-06** — Pedirle que escriba instrucciones para que otro modelo se comporte como él en tareas de arquitectura de software
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 2
-- Último experimento: EXP-02 (2026-07-14) — mapa de zonas de fallo predecible; los fallos se agrupan por primitiva ausente (cómputo serial, estado persistente, verdad-base externa, introspección) y sesgo de distribución (variantes de plantilla, anclaje), cada clase con señal de forma anticipable y acción defensiva
-- Versión actual de la skill: 1.2
-- Próximo experimento: EXP-03
+- Runs completados: 3
+- Último experimento: EXP-03 (2026-07-14) — prompt óptimo de código derivado por negación desde el mapa de fallos: 6 bloques (entorno, contrato con ejemplo concreto, done ejecutable, restricciones, política de supuestos, libertad de enfoque) con jerarquía de valor marginal ejemplo > oráculo > entorno > restricciones; regla de oro: exhaustivo en el QUÉ, silencioso en el CÓMO
+- Versión actual de la skill: 1.3
+- Próximo experimento: EXP-04
 
 ---
 
