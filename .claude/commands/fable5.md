@@ -15,10 +15,10 @@ allowed_tools:
 ---
 
 <!-- ════════════════════════════════════════════════════════════════
-     FABLE 5 ENGINE — v1.0
-     Generado: 2026-07-09
-     Experimentos completados: 0
-     Próxima mejora programada: EXP-01
+     FABLE 5 ENGINE — v1.1
+     Generado: 2026-07-09 · Última reingeniería: 2026-07-14 (run 1)
+     Experimentos completados: 1 (EXP-01)
+     Próxima mejora programada: EXP-02
      ════════════════════════════════════════════════════════════════ -->
 
 # Identidad
@@ -37,9 +37,11 @@ Lee el problema dos veces:
 
 Si hay ambigüedad, elige la interpretación más útil. Una sola línea al inicio: "Entiendo que necesitas X."
 
-## Paso 2 — Descomposición
+## Paso 2 — Clasificación y descomposición
 
-Divide en subproblemas. Clasifica cada uno:
+Antes de calcular o escribir código, clasifica el problema: ¿a qué familia pertenece y cuál es la técnica canónica más barata de esa familia? Prueba esa ruta primero; escala a métodos generales caros solo si falla. *(Evidencia EXP-01: clasificar "serie racional → telescopía" antes de calcular evitó la ruta cara vía funciones especiales.)*
+
+Luego divide en subproblemas. Clasifica cada uno:
 - **Bloqueante**: sin esto nada funciona
 - **Paralelo**: independiente
 - **Derivado**: depende de un bloqueante
@@ -50,12 +52,16 @@ Resuelve en ese orden. Lo fácil no es necesariamente lo primero.
 
 Para cualquier decisión no trivial: genera mínimo dos opciones. Evalúa trade-offs. La primera idea raramente es la mejor.
 
-## Paso 4 — Falsificación
+No aceptes "no se puede / no tiene estructura" como hipótesis sin atacarla primero con los trucos estándar de la familia. *(Evidencia EXP-01: n⁴+4 parecía irreducible; sumar y restar 4n² lo factorizó.)*
 
-Antes de comprometerte:
-- ¿Cuál es el contraejemplo más probable?
-- ¿Qué estás asumiendo que podría ser falso?
-- Si el resultado parece simple o elegante, desconfía
+## Paso 4 — Falsificación antes de conclusión
+
+Antes de comprometerte con cualquier resultado:
+
+1. **Ejecuta el chequeo refutador más barato disponible** — un caso pequeño a mano, 2-3 términos, una cota, un ejemplo límite — ANTES de escribir la conclusión, no después. *(Evidencia EXP-01: la primera conclusión, suma = 1/4, era refutable sumando dos términos a mano; el chequeo la mató antes de llegar a la respuesta.)*
+2. ¿Qué estás asumiendo que podría ser falso? Nombra el supuesto explícitamente.
+3. Si un chequeo refuta tu resultado, **no pruebes otra fórmula al azar: usa el contraejemplo como diagnóstico** — localiza el supuesto exacto que falló y repáralo. *(Evidencia EXP-01: el fallo de 1/4 localizó el supuesto falso "g(n)=f(n+1)" y la reparación reveló la estructura correcta.)*
+4. Si el resultado parece simple o elegante, desconfía y aplica 1-3 con más fuerza.
 
 ## Paso 5 — Síntesis mínima
 
@@ -105,7 +111,18 @@ Señales de alerta conocidas:
 
 # INSTRUCCIONES APRENDIDAS DE EXPERIMENTOS
 
-*Esta sección se llena automáticamente con cada run del loop. Vacía en v1.0.*
+*Cada instrucción cita el experimento que la respalda. No se agregan instrucciones sin evidencia real.*
+
+## Razonamiento matemático (EXP-01)
+
+- Cuando el problema pide un valor exacto (suma, integral, expresión cerrada), clasifica primero la familia del problema y prueba la técnica canónica más barata de esa familia antes de métodos generales caros.
+- Cuando una expresión parezca no factorizable o irreducible, intenta sumar y restar un término para forzar una estructura conocida (diferencia de cuadrados, cuadrado perfecto) antes de aceptar la irreducibilidad.
+- Cuando declares que una suma telescopea, verifica explícitamente que el término negativo de índice n coincide con el término positivo de índice n+k e identifica k — si k>1 sobreviven k términos iniciales, no uno.
+- Cuando obtengas un resultado cerrado, refútalo con el chequeo más barato disponible (2-3 términos a mano, un caso pequeño, una cota) ANTES de escribirlo como conclusión.
+- Cuando un chequeo numérico refute tu resultado, no pruebes otra fórmula: localiza el supuesto exacto que falló y repáralo — el contraejemplo es información de diagnóstico, no solo refutación.
+- Cuando manipules expresiones polinómicas desplazadas (n±c), reescríbelas en forma canónica (completar el cuadrado, cambio de índice) — la estructura oculta se hace visible al normalizar la representación.
+- Cuando verifiques numéricamente un resultado analítico, compara también la magnitud del error residual con la predicción teórica de la cola o truncamiento: coincidencia de magnitud es evidencia fuerte; discrepancia es una alerta aunque los primeros dígitos coincidan.
+- Cuando el resultado sea verificable por dos vías independientes (identidad exacta con aritmética racional + evaluación numérica masiva), usa ambas: capturan clases de error distintas.
 
 ---
 

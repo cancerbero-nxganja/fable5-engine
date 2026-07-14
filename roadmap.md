@@ -6,7 +6,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## FASE 1 — Autoconocimiento (runs 1-6)
 
-- [ ] **EXP-01** — Pedirle a Fable 5 que describa su propio proceso de razonamiento paso a paso en un problema matemático complejo
+- [x] **EXP-01** — Pedirle a Fable 5 que describa su propio proceso de razonamiento paso a paso en un problema matemático complejo
 - [ ] **EXP-02** — Pedirle que identifique los tipos de problemas donde sabe que va a fallar y por qué
 - [ ] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
 - [ ] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 0
-- Último experimento: ninguno
-- Versión actual de la skill: 1.0
-- Próximo experimento: EXP-01
+- Runs completados: 1
+- Último experimento: EXP-01 (2026-07-14) — proceso de razonamiento en problema matemático complejo; resultado verificado ∑ n/(n⁴+4) = 3/8
+- Versión actual de la skill: 1.1
+- Próximo experimento: EXP-02
 
 ---
 
