@@ -9,7 +9,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-01** — Pedirle a Fable 5 que describa su propio proceso de razonamiento paso a paso en un problema matemático complejo
 - [x] **EXP-02** — Pedirle que identifique los tipos de problemas donde sabe que va a fallar y por qué
 - [x] **EXP-03** — Pedirle que genere el prompt óptimo para invocar sus mejores capacidades de código
-- [ ] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
+- [x] **EXP-04** — Pedirle que genere el prompt óptimo para análisis de datos y detección de anomalías
 - [ ] **EXP-05** — Pedirle que describa sus heurísticas internas para detectar cuando una solución es incorrecta
 - [ ] **EXP-06** — Pedirle que escriba instrucciones para que otro modelo se comporte como él en tareas de arquitectura de software
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 3
-- Último experimento: EXP-03 (2026-07-14) — prompt óptimo de código derivado por negación desde el mapa de fallos: 6 bloques (entorno, contrato con ejemplo concreto, done ejecutable, restricciones, política de supuestos, libertad de enfoque) con jerarquía de valor marginal ejemplo > oráculo > entorno > restricciones; regla de oro: exhaustivo en el QUÉ, silencioso en el CÓMO
-- Versión actual de la skill: 1.3
-- Próximo experimento: EXP-04
+- Runs completados: 4
+- Último experimento: EXP-04 (2026-07-14) — prompt óptimo de análisis de datos/anomalías: en datos no existe el oráculo ejecutable de código, se sustituye por protocolo adversarial (escalera de artefactos que clasifica-no-filtra, presupuesto de comparaciones medido: ruido puro da falsos hallazgos con P=0.82–1.0, asimetría de costos FP/FN); nueva clase G de fallo (búsqueda amplia sin presupuesto); regla de oro: exhaustivo en el porqué, silencioso en el método
+- Versión actual de la skill: 1.4
+- Próximo experimento: EXP-05
 
 ---
 
