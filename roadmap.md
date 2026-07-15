@@ -18,7 +18,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-07** — Documentar cómo Fable 5 descompone un problema de trading algorítmico
 - [x] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
 - [x] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
-- [ ] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
+- [x] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
 - [ ] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
 - [ ] **EXP-12** — Documentar cómo Fable 5 usa herramientas de forma óptima (cuándo, cuáles, en qué orden)
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 9
-- Último experimento: EXP-09 (2026-07-15) — diseño de esquemas de base de datos sin redundancia: **"sin redundancia" es una consigna-trampa** (como "detecta", EXP-08). "Redundancia" confunde tres cosas que se separan con dos preguntas de frontera — **frontera A (temporal, EXP-06/07):** ¿la fuente cambia tras el evento? y **frontera B (dueño, EXP-06/08):** ¿la copia tiene dueño mecánico? Tres clases: (1) copia derivable-sin-dueño = redundancia patológica (anomalía de update, normalízala); (2) **snapshot as-of** (precio de línea, dirección de envío) = NO es redundancia, es un registro histórico (consérvala); (3) copia derivada **con dueño declarativo** (columna generada, vista materializada con `CHECK` de conservación) = redundancia gobernada (legítima como decisión de rendimiento). Meta-hallazgo: la frontera as-of de EXP-06 asciende de regla de aplicación a **operador generador de tablas** del esquema; la normalización es oráculo semi-honesto pero **ciego al tiempo** (no distingue snapshot de duplicado) → córrela *después* de la frontera A. Asimetría **a favor** por primera vez: el motor regala dueños mecánicos declarativos, así que "todo invariante, un dueño mecánico" (EXP-06) es aquí lo más barato → mapea cada invariante a una constraint
-- Versión actual de la skill: 1.9
-- Próximo experimento: EXP-10 (evaluar si un resultado estadístico es real o artefacto)
+- Runs completados: 10
+- Último experimento: EXP-10 (2026-07-15) — evaluación de resultados estadísticos: **"¿es real?" es la 5ª consigna-trampa** — la propiedad no vive en el número sino en el **procedimiento que lo generó**, y el procedimiento no viene impreso en el número. Asimetría estructural vs. EXP-04: allí eres el analista; aquí el resultado **llega hecho** y llegó *porque fue interesante* — el canal de atención selecciona, así que **todo resultado mostrado es un estadístico de orden por defecto** (el "mejor de N" de EXP-07 generalizado) y el sesgo al alza es el caso por defecto. Números medidos por simulación (clase A en modo generativo): peeking 9 miradas → error tipo I real **18%**; 12 subgrupos → min p<0.01 el **11%**; winner's curse con poder 14% → estimación **×3.0** el efecto real; posterior con prior 10% → P(real|sig)=**24%** (≈8% con peeking); cota SBB: p=0.03 → **BF≤3.5**. Hallazgos eje: re-análisis del mismo dato = segunda *cuenta*, no segunda *vista* (la única segunda vía es replicación en datos no usados en la búsqueda); **la deflación es parámetro de diseño** (el test confirmatorio se dimensiona contra el efecto deflactado, no el reportado, o nace infrapotenciado y su fallo se lee como refutación); tipología del oráculo completa con el tipo **diferido** (replicación honesta pero no disponible al decidir → interrogatorio + deflación + posterior)
+- Versión actual de la skill: 1.10
+- Próximo experimento: EXP-11 (manejo de ambigüedad en requerimientos)
 
 ---
 
