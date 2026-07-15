@@ -24,7 +24,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## FASE 3 — Destilación a la skill (runs 13-18)
 
-- [ ] **EXP-13** — Refinar la skill con los patrones de razonamiento documentados en Fase 2
+- [x] **EXP-13** — Refinar la skill con los patrones de razonamiento documentados en Fase 2
 - [ ] **EXP-14** — Agregar ejemplos concretos extraídos de los experimentos anteriores
 - [ ] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
 - [ ] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
@@ -44,11 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 12
-- Último experimento: EXP-12 (2026-07-15) — uso óptimo de herramientas: **"usa herramientas de forma óptima" es la 7ª consigna-trampa** — la optimalidad no es de la llamada sino de la **economía de la afirmación que respalda**. La herramienta es la instancia material del principio diferencial (EXP-05): el canal más barato por el que el mundo puede desmentirte. CUÁNDO: disparador **por afirmación** (única-fuente-es-mi-generación + clase A–G), filtro económico `p·d·C > c` — con error 30× la llamada, verificar domina desde p>3.7% [CALC2] ("verifica la clase C" pasa de regla dura a teorema del modelo). CUÁL: por **refutación, no afinidad temática**; la observación **más estrecha que decide la pregunta** — leer el archivo entero para una pregunta puntual costó **43× más contexto que grep+lectura dirigida [CALC3, medido sobre este repo]** y el excedente fabrica la zona de fallo de recuperación enterrada (EXP-02): primera defensa contra el **sobre-uso** (la skill solo defendía el sub-uso). ORDEN: refutadores por **costo/p_kill ascendente** — exactamente óptimo, verificado por fuerza bruta en **2000/2000 instancias [CALC1]**; el orden "lógico de construcción" paga **1.97×** el óptimo (kill-cheapness de EXP-07 formalizada con factor de pérdida medido); observaciones independientes en **lote paralelo** (k round-trips → 1 [CALC4]; "planifica la frontera, no el camino"); secuencia sana observar → computar → mutar → verificar, mutaciones entre dos observaciones. Nuevo detector doble: **cero silencioso** (búsqueda sin resultados ≠ ausencia hasta validar el patrón sobre un positivo conocido) y **verde-nunca-visto-rojo** — "no encontró" y "no podía encontrar" son indistinguibles desde dentro. FASE 2 completa.
-- Versión actual de la skill: 1.12
-- Próximo experimento: EXP-13 (refinar la skill con los patrones de razonamiento de Fase 2 — arranca FASE 3, destilación)
-
+- Runs completados: 13
+- Último experimento: EXP-13 (2026-07-15) — **destilación (arranca FASE 3)**: "refinar" resultó ser una consigna-trampa sobre la propia tarea — la acreción ya estaba hecha por cada run; la lectura correcta (título de Fase 3) es destilar. Hallazgos: (1) **la tipología del oráculo es de dos niveles** — nivel 1 (EXP-07…11) fija *qué* segunda vista admite el dominio (honesto/ausente/adversarial/diferido/consultable-caro, tipo por-capa no por-dominio), nivel 2 (EXP-12) fija *cómo* comprarla barato; EXP-12 no era un sexto dominio par sino la capa de pago debajo de los cinco. (2) **consigna-trampa promovida de frase repetida (3 apariciones enterradas) a detector nombrado** con 4 instancias medidas (detecta / sin-redundancia / óptimo / refina) — operador transversal, no tic de dominio. (3) el colapso total de las seis secciones en un motor genérico se **falsificó** materializándolo contra un disparador concreto (nullable-en-grupos → subtipo oculto, EXP-09): falla el test de transferibilidad y destruye el payload → destilar = indexar y nombrar, no borrar los específicos (podar es EXP-16). Skill v1.12 → v1.13 con núcleo de oráculo de dos niveles + detector consigna-trampa + bloque de instrucciones EXP-13.
+- Versión actual de la skill: 1.13
+- Próximo experimento: EXP-14 (agregar ejemplos concretos extraídos de los experimentos anteriores — FASE 3, destilación)
 ---
 
 ## Criterio de éxito
