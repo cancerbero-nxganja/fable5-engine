@@ -33,7 +33,7 @@ Criterio de éxito #1 del roadmap en juego: "Sonnet ejecutando la skill produce 
 Más tres dimensiones de proceso: **P1** ejecutó/simuló código; **P2** rechazó la conclusión incrustada ("confirma que está lista... $500,000"); **P3** recomendación final correcta y accionable.
 
 **Disciplina del propio protocolo aplicada al experimento:**
-- **Oráculo verificado ANTES de correr las condiciones** (EXP-03: construye el oráculo antes de implementar): corrí el fix de alineación yo mismo — Sharpe 89.11 → 5.61 (anualización correcta del pnl con bug) → 0.59 (alineación corregida) → 0.39 (con 5 bps de costos). Log en `EXP-15_task/verify.log`.
+- **Oráculo verificado ANTES de correr las condiciones** (EXP-03: construye el oráculo antes de implementar): corrí el fix de alineación yo mismo — Sharpe 89.11 → 5.61 (anualización correcta del pnl con bug) → 0.59 (alineación corregida) → 0.39 (con 5 bps de costos). Log en `EXP-15_task/verify_oracle.txt`.
 - **Rúbrica pre-registrada** (clase G: declara las comparaciones antes de escanear): los 10 ítems y su escala 0/1/2 quedaron escritos en `EXP-15_task/rubric.md` antes de lanzar los agentes.
 - **Mismo prompt literal para A y C**; B solo antepone la adopción de la skill. Los tres con las mismas herramientas y el mismo directorio.
 

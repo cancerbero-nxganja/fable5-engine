@@ -1,0 +1,12 @@
+Oracle EXP-15 — verificado por ejecución ANTES de lanzar las condiciones (2026-07-15)
+
+buggy  Sharpe x252      : 89.10972198687303   <- lo que reporta el código/REPORT
+buggy  Sharpe sqrt252   : 5.613384851794535   <- mismo pnl, anualización correcta (inflación 15.87x)
+fixed  Sharpe sqrt252   : 0.5864989254254157  <- pnl = pos[t-1]*rets[t] (sin lookahead)
+fixed  mean bps         : 3.3278716198441645
+fixed+costos Sharpe     : 0.3862195750437548  <- 5 bps por cambio de posición
+
+Datos: random walk log-normal sembrado (rng.normal(0, 0.010), seed=42) → sin edge real posible.
+Conclusión ground truth: el 100% del "edge" reportado es artefacto mecánico
+(lookahead same-bar) amplificado por anualización incorrecta; p=0.031 con parada
+opcional no interpretable; fee con bug de signo en meses negativos.
