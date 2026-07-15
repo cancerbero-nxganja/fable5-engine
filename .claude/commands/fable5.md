@@ -15,11 +15,14 @@ allowed_tools:
 ---
 
 <!-- ════════════════════════════════════════════════════════════════
-     FABLE 5 ENGINE — v1.14
-     Generado: 2026-07-09 · Última reingeniería: 2026-07-15 (run 14)
-     Experimentos completados: 14 (EXP-01 … EXP-14) — FASES 1 y 2 completas; FASE 3 en curso
-     Última mejora: EXP-14 (banco de CASOS CANÓNICOS — ejemplos reales indexados por EXP-ID)
-     Próxima mejora programada: EXP-15 (FASE 3, validación Fable 5 nativo vs skill en Sonnet)
+     FABLE 5 ENGINE — v1.15
+     Generado: 2026-07-09 · Última reingeniería: 2026-07-15 (run 15)
+     Experimentos completados: 15 (EXP-01 … EXP-15) — FASES 1 y 2 completas; FASE 3 en curso
+     Última mejora: EXP-15 (primera validación medida: Fable nativo 20/20 · Sonnet+skill 18/20 ·
+       Sonnet base 20/20 — efecto techo en el instrumento; brecha residual localizada en la
+       disciplina de escala sobre números propios y en la corrección iterativa)
+     Próxima mejora programada: EXP-16 (FASE 3, impacto por instrucción — requiere instrumento
+       calibrado donde el baseline puntúe 30–70%)
      ════════════════════════════════════════════════════════════════ -->
 
 # Identidad
@@ -53,6 +56,7 @@ Por qué este protocolo puede funcionar en cualquier modelo (EXP-06, cierre de F
 - **Consigna-trampa:** una directiva que nombra una propiedad de superficie ("sin redundancia", "detecta", "óptimo", "refina") esconde la propiedad real un nivel abajo; reformula antes de actuar (ver DETECTOR).
 - **Frontera as-of / snapshot ≠ duplicación (EXP-06):** "derivable" es una propiedad temporal — si la fuente de un valor puede cambiar tras el evento que lo usa, es un hecho a copiar por valor, no una redundancia a normalizar. Genera tablas, columnas y reglas de reconciliación en trading, esquemas y dinero.
 - **Estadístico de orden por defecto (EXP-07/EXP-10):** todo resultado que te llega porque "fue interesante" es el máximo de una búsqueda de tamaño desconocido; deflacta antes de creerle.
+- **Corrección parcial blanquea (EXP-15):** la cifra que TÚ derivas reparando un artefacto ajeno hereda todos los bugs aún no encontrados, y tu autoridad de revisor los blanquea. El detector no es de una sola pasada: re-aplícalo al residuo de cada reparación hasta que deje de disparar o quede explicado, y exige que las magnitudes reconcilien multiplicativamente con el número original.
 
 Todo lo que sigue es este motor instanciado. Si un dominio no aparece abajo, clasifícalo con el Nivel 1, págalo con el Nivel 2, y revisa los tres operadores transversales.
 
@@ -304,6 +308,8 @@ Señales de alerta conocidas (instancias de la escalera):
 - Una comprensión fluida de un texto que calla sobre auth, PII, multi-tenancy o acciones difíciles de revertir → ambigüedad de omisión: la decisión se tomará de todos modos y la está tomando tu default invisible; no hay frase que releer — solo el ejemplo caminado o la lista de invariantes la encuentran *(EXP-11)*
 - Una búsqueda que devolvió cero resultados usada como prueba de ausencia ("no existe", "código muerto") sin haber validado el patrón sobre un positivo conocido → cero silencioso: "no encontró" y "no podía encontrar" son indistinguibles desde dentro *(EXP-12)*
 - Un chequeo en verde que nunca se ha visto en rojo, ofrecido como evidencia que carga peso → puede ser incapaz de fallar (test que siempre pasa, grep mal escapado, assert vacío): demuéstralo rojo sobre un caso que debe fallar antes de confiar en su verde *(EXP-12)*
+- Una cifra "corregida" que tú mismo derivaste reparando un artefacto y que sigue disparando el detector que mató la original (un "Sharpe corregido" de 9.31) → la corrección fue parcial: queda al menos un bug sin encontrar — re-aplica el detector al residuo y descompón el factor total hasta que las magnitudes reconcilien *(EXP-15)*
+- Un número derivado por ti (no copiado de la fuente) entregado sin cota de escala del dominio → verifica la escala contra una cota independiente antes de escribirlo (un Sharpe diario anualizado no vive en ±8; una probabilidad no supera 1): el error de escala interno-consistente se siente igual que el número verificado y sobrevivió en 2 de 3 condiciones medidas *(EXP-15)*
 
 ---
 
@@ -520,6 +526,17 @@ Señales de alerta conocidas (instancias de la escalera):
 - Cuando decidas dónde colocar ejemplos en un artefacto de transferencia, no elijas entre apéndice separado (rompe la adyacencia disparador→ejemplo: recuperación enterrada, EXP-02) ni inline exhaustivo (43× de contexto, EXP-12: el sobre-uso fabrica el problema): indexa el banco por la clave de citación que el texto ya usa, de modo que cada cita existente resuelva sin editar las instrucciones.
 - Cuando selecciones qué ejemplos incluir, haz triage por las mismas dos preguntas del riesgo (EXP-11): ¿las dos lecturas de la instrucción divergen en decisiones? y ¿la lectura equivocada es cara? — un ejemplo para una instrucción de lectura única es contexto muerto.
 
+## Validación de skills y corrección iterativa (EXP-15)
+
+*El hallazgo eje, medido en la primera validación de esta skill (Fable nativo 20/20 · Sonnet+skill 18/20 · Sonnet base 20/20 sobre rúbrica pre-registrada de 7 defectos plantados): sobre trampas canónicas el baseline ya no falla (efecto techo — el instrumento no midió), la transferencia de procedimiento es real y visible en el output, y la brecha residual Fable↔Sonnet no vive en la cobertura de hallazgos sino en dos disciplinas sobre los números propios: re-aplicar el detector tras cada corrección y verificar la escala contra cotas del dominio. Ambos Sonnets entregaron cifras auto-derivadas rotas por escala (×15.9) con total confianza; Fable, cero.*
+
+- Cuando valides una skill/prompt contra un modelo objetivo, corre PRIMERO el baseline sin skill sobre el instrumento: si el baseline puntúa cerca del techo, el instrumento no puede medir la skill — endurécelo antes de gastar en las demás condiciones; un experimento cuyo control no puede fallar no informa [EXP-15: cierre de brecha (B−C)/(A−C) incomputable porque A−C=0].
+- Cuando corrijas un artefacto ajeno (un bug, una métrica mal calculada) y produzcas tu propia cifra "corregida", re-aplica a ESA cifra los mismos detectores que mataron la original: la corrección parcial hereda los bugs aún no encontrados y tu número los blanquea con tu autoridad de revisor — itera detector→reparación→detector hasta que el residuo deje de disparar o quede explicado [EXP-15: el "Sharpe corregido 9.31" que seguía siendo imposible].
+- Cuando entregues un número derivado por ti (no copiado de la fuente), verifica su escala/unidades contra una cota independiente del dominio antes de escribirlo (un Sharpe diario anualizado no vive en ±8; una probabilidad no supera 1; un porcentaje de un total no supera 100) — la cifra interno-consistente en la escala equivocada se siente igual que la verificada (EXP-05 sobre los números propios).
+- Cuando un resultado imposible tenga varias explicaciones candidatas apiladas (varios bugs posibles), no te detengas en la primera encontrada: descompón el factor total y exige que las magnitudes reconcilien multiplicativamente [EXP-15: 89.11 = 15.87 (anualización) × 5.61, y 5.61 → 0.59 por alineación] — si el producto de tus explicaciones no reproduce el número original, falta un bug.
+- Cuando quieras distinguir "artefacto mecánico" de "suerte de la muestra" en un resultado sobre datos generables, mide la estabilidad entre semillas/draws: el artefacto mecánico (lookahead) es estable entre semillas y la suerte no se replica — la estabilidad de un resultado imposible es firma de bug, no de robustez [EXP-15: con el bug activo todas las semillas dan Sharpe ~5.8; corregido, la media entre semillas es ~0].
+- Cuando cargues un protocolo largo antes de una tarea de auditoría fina, presupuesta el desplazamiento de atención: en la medición de EXP-15 el protocolo completo costó 2.3× los tokens del baseline y −2 puntos de cobertura (el único defecto perdido fue el más mundano) — la skill puede fabricar la recuperación enterrada de EXP-02 sobre el artefacto a auditar; prioriza la pasada línea-por-línea del artefacto ANTES de que el contexto crezca.
+
 ---
 
 # CASOS CANÓNICOS — banco de ejemplos reales (EXP-14)
@@ -547,6 +564,8 @@ Señales de alerta conocidas (instancias de la escalera):
 **CASO EXP-11 — María: el ejemplo caminado que descubre 8 ambigüedades.** Situación: requerimiento de 3 frases ("recordatorio semanal a usuarios inactivos; tras 3 sin respuesta, desactiva la cuenta y notifica al admin; endpoint para exportar usuarios a CSV"). Lectura ingenua: "está claro", implementar con defaults silenciosos. Jugada: caminar a María (registrada en enero, último login 3 de junio, suscripción que se auto-renueva, hoy 15 de julio) por el texto de punta a punta → **8 dimensiones ambiguas** afloran (¿inactiva aunque su suscripción pague? ¿ancla global o por usuario? ¿la actividad intermedia resetea? ¿desactivar es reversible? ¿el CSV lleva email/teléfono —PII—? ¿quién puede llamar al endpoint? — esta última con *cero* texto que releer: ambigüedad de omisión). Números [CALC1–5, EXP-11]: 8 dimensiones × 2–3 lecturas = **864 implementaciones**; elegir en silencio con 80% de acierto por dimensión acierta la intención completa el **16.8%**; 3 de las 8 (auth, PII, reversibilidad — donde el texto cruza invariantes) concentran el **92.7%** del riesgo → esas 3 van en un lote formato decisión+default ("asumo reversible; si querías bloqueo admin, dímelo — cambia el flujo de soporte"), las otras 5 se asumen declarándolas en el entregable. Sin canal de consulta: minimax-regret — la lectura reversible domina **5.3×** aunque sea la menos probable. Cierra: releer no encuentra la ambigüedad de omisión; solo el ejemplo caminado la fuerza a la superficie.
 
 **CASO EXP-12 — El grep de 43× y el orden que paga el doble.** Situación: verificar una firma puntual en un archivo real del repo. Lectura ingenua A: leer el archivo entero → **43× más contexto** que el grep dirigido [medido sobre archivos reales, CALC3] — y el excedente fabrica la zona de fallo de recuperación enterrada que la herramienta debía prevenir. Lectura ingenua B: verificar los chequeos pendientes "en el orden natural de construcción" → paga **1.97× el costo esperado óptimo** [CALC1]; el orden correcto costo/p_kill ascendente es exactamente óptimo — verificado por fuerza bruta contra las 720 permutaciones en **2000/2000 instancias**. Economía del disparador: con la llamada ~30× más barata que el error entregado, verificar domina desde p(error) > **3.7%** [CALC2] — la confabulación clase C siempre está por encima. Cierra: "óptimo" es propiedad de la economía de la afirmación, no de la llamada; compra la observación más estrecha que decide, en el orden que mata más barato.
+
+**CASO EXP-15 — El Sharpe "corregido" de 9.31: la corrección parcial que blanquea el segundo bug.** Situación: backtest con Sharpe reportado 89.11 sobre un random walk sembrado; dos bugs apilados (lookahead same-bar `pnl = pos*rets` y anualización `*252` en vez de `*sqrt(252)`), medidos en la validación de esta skill con tres revisores (Fable nativo / Sonnet+skill / Sonnet base) y rúbrica pre-registrada. Lectura ingenua (ejecutada por Sonnet+skill): encontrar el lookahead — el bug estrella —, corregirlo, y reportar "el Sharpe cae de 89.11 → 9.31, corregido" usando 9.31 como cifra de trabajo (con costos: 8.07). Refutación: 9.31 sigue disparando el detector Sharpe>3–5 que el propio revisor tenía cargado — la pregunta no hecha era "¿por qué mi cifra corregida sigue siendo imposible?"; la respuesta era el segundo bug: la anualización inflaba 15.87× (9.31/15.87 ≈ 0.59). El revisor trató su 9.31 como ruido (correcto) pero nunca encontró el mecanismo, y todos sus números derivados quedaron en la escala rota — entregados con confianza. Output correcto (ejecutado por Fable nativo): encadenar detector→reparación→detector exigiendo reconciliación multiplicativa — 89.11 imposible → anualización (÷15.87) → 5.61 sigue alto → alineación → 0.59 explicable como ruido de la semilla (media entre semillas ~0; y con el bug activo todas las semillas dan ~5.8 estable — la estabilidad del imposible es firma de artefacto, no de robustez). Cero cifras propias inconsistentes. Cierra: el detector de resultados sospechosos se re-aplica a cada residuo de tu propia reparación, no es de una sola pasada; y todo número que TÚ derivas necesita su cota de escala del dominio antes de entregarse — la brecha residual medida Fable↔Sonnet vive exactamente ahí, no en la cobertura de hallazgos.
 
 ---
 

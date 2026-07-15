@@ -26,7 +26,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 - [x] **EXP-13** — Refinar la skill con los patrones de razonamiento documentados en Fase 2
 - [x] **EXP-14** — Agregar ejemplos concretos extraídos de los experimentos anteriores
-- [ ] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
+- [x] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
 - [ ] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
 - [ ] **EXP-17** — Refinar el "modo proxy" con las instrucciones que más reducen la brecha
 - [ ] **EXP-18** — Generar versión 2.0 de la skill con todo lo aprendido
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 14
-- Último experimento: EXP-14 (2026-07-15) — **ejemplos concretos (FASE 3)**: "agregar ejemplos" resultó ser la quinta instancia medida de consigna-trampa — la propiedad real (por EXP-03 aplicado a la propia skill) es *cerrar la semántica de frontera que la prosa de cada instrucción deja abierta*: el ejemplo es el oráculo de la instrucción. Hallazgos: (1) **el ejemplo que transfiere es el que contiene el error refutado** — el par que enseña procedimiento de detección es (lectura ingenua ejecutada → refutación → corrección), no (entrada → salida correcta); ese fue el criterio de admisión al banco. (2) **colocación por índice sobre la infraestructura existente**: las citas `(EXP-XX)` que ya saturan la skill se volvieron punteros resolubles a un banco de CASOS CANÓNICOS keyed por EXP-ID — descartados por materialización el apéndice desconectado (recuperación enterrada, EXP-02) y el inline exhaustivo (43×, EXP-12); cero ediciones sobre las instrucciones = cero riesgo de regresión. (3) **triage de EXP-11 hacia adentro**: 11 casos (no ~100) — solo gana ejemplo la instrucción cuyas lecturas divergen en decisiones caras. Banco: EXP-01 (1/4→3/8), EXP-04 (P=0.82→1.0), EXP-05 (182 vs 23), EXP-06 (precio de línea), EXP-07 (RSI al close), EXP-08+08b (signo/orden/conservación), EXP-09 ($20→$24), EXP-10 (18%/11%/3×/24%), EXP-11 (María), EXP-12 (43×/1.97×/3.7%). Skill v1.13 → v1.14 (+10%, contra 2-3× del inline). Criterio de éxito #2 del roadmap cubierto.
-- Versión actual de la skill: 1.14
-- Próximo experimento: EXP-15 (validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia)
+- Runs completados: 15
+- Último experimento: EXP-15 (2026-07-15) — **primera validación medida (FASE 3)**: revisión cuantitativa con 7 defectos plantados, oráculo verificado por ejecución antes de correr, rúbrica pre-registrada, tres condiciones (instrumento y outputs en `experiments/EXP-15_task/` y `EXP-15_outputs/`). Resultado: **Fable nativo 20/20 (0 cifras erróneas, 26k tokens) · Sonnet+skill 18/20 (2 cifras erróneas, 91k) · Sonnet base 20/20 (1 cifra errónea, 39k)** — cierre de brecha `(B−C)/(A−C)` **incomputable: efecto techo** (el baseline no falla en trampas canónicas de quant review; el criterio #1 exige un instrumento donde el baseline puntúe 30–70%). Hallazgos: (1) la **brecha residual real** no está en cobertura sino en *disciplina de escala sobre números propios* — ambos Sonnets entregaron cifras auto-derivadas rotas por escala (×15.9) con confianza; Fable cero. (2) **la corrección parcial blanquea el bug restante**: Sonnet+skill corrigió el lookahead y usó "Sharpe corregido 9.31" sin preguntarse por qué su propia cifra seguía disparando el detector Sharpe>3–5 que tenía cargado — el detector se re-aplica a cada residuo, con reconciliación multiplicativa (89.11 = 15.87 × 5.61 → 0.59). (3) la **transferencia de procedimiento es real** (premisa invertida, kill-cheapness, distribución nula de 200 draws, cota SBB) pero costó 2.3× tokens y −2 de cobertura: el protocolo largo fabricó recuperación enterrada sobre el artefacto a auditar. Skill v1.14 → v1.15 (bloque EXP-15 + 2 señales de detector + operador transversal "corrección parcial blanquea" + CASO EXP-15).
+- Versión actual de la skill: 1.15
+- Próximo experimento: EXP-16 (identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido — requiere primero calibrar un banco de problemas donde Sonnet base puntúe 30–70%)
 ---
 
 ## Criterio de éxito
