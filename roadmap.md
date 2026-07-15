@@ -19,7 +19,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
 - [x] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
 - [x] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
-- [ ] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
+- [x] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
 - [ ] **EXP-12** — Documentar cómo Fable 5 usa herramientas de forma óptima (cuándo, cuáles, en qué orden)
 
 ## FASE 3 — Destilación a la skill (runs 13-18)
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 10
-- Último experimento: EXP-10 (2026-07-15) — evaluación de resultados estadísticos: **"¿es real?" es la 5ª consigna-trampa** — la propiedad no vive en el número sino en el **procedimiento que lo generó**, y el procedimiento no viene impreso en el número. Asimetría estructural vs. EXP-04: allí eres el analista; aquí el resultado **llega hecho** y llegó *porque fue interesante* — el canal de atención selecciona, así que **todo resultado mostrado es un estadístico de orden por defecto** (el "mejor de N" de EXP-07 generalizado) y el sesgo al alza es el caso por defecto. Números medidos por simulación (clase A en modo generativo): peeking 9 miradas → error tipo I real **18%**; 12 subgrupos → min p<0.01 el **11%**; winner's curse con poder 14% → estimación **×3.0** el efecto real; posterior con prior 10% → P(real|sig)=**24%** (≈8% con peeking); cota SBB: p=0.03 → **BF≤3.5**. Hallazgos eje: re-análisis del mismo dato = segunda *cuenta*, no segunda *vista* (la única segunda vía es replicación en datos no usados en la búsqueda); **la deflación es parámetro de diseño** (el test confirmatorio se dimensiona contra el efecto deflactado, no el reportado, o nace infrapotenciado y su fallo se lee como refutación); tipología del oráculo completa con el tipo **diferido** (replicación honesta pero no disponible al decidir → interrogatorio + deflación + posterior)
-- Versión actual de la skill: 1.10
-- Próximo experimento: EXP-11 (manejo de ambigüedad en requerimientos)
+- Runs completados: 11
+- Último experimento: EXP-11 (2026-07-15) — manejo de ambigüedad en requerimientos: **"maneja la ambigüedad" es la 6ª consigna-trampa** — la ambigüedad no es propiedad del texto sino del par **(texto, decisión)**: solo importa la que hace divergir decisiones caras. La peligrosa es **invisible desde dentro** (EXP-05 aplicado a la lectura): leer compila con defaults y el rellenado no deja rastro — releer es segunda cuenta, no segunda vista; el detector es material: **caminar una entidad concreta con nombre y fechas por el texto** (el ejemplo de EXP-03 invertido: allí cerraba fronteras, aquí las abre). Números calculados (clase A, `experiments/EXP-11_sim.py`): un párrafo de 3 frases = 8 dimensiones × 2–3 lecturas = **864 implementaciones**; elección silenciosa con 80% de acierto por dimensión → **16.8%** de acertar la intención completa (falsifica "elige la interpretación más útil" del Paso 1 v1.10 — primera auto-falsificación de la skill); triage divergencia × irreversibilidad → 3 de 8 dimensiones (auth, PII, reversibilidad — todas invariantes del dominio) concentran **92.7%** del riesgo; sin canal de consulta la lectura menos probable pero barata de corregir domina **5.3×** (minimax-regret ≠ máx-verosimilitud). Taxonomía: ambigüedad **léxica / de frontera / de omisión** (la de omisión — auth, PII, tenancy — no tiene frase que releer). Tipología del oráculo completa con el 5º tipo: **consultable-caro** (el autor: responde, pero cada consulta es un round-trip y reacciona a concreciones mejor de lo que especifica → lote decisión+default, ejemplo caminado en vez de paráfrasis)
+- Versión actual de la skill: 1.11
+- Próximo experimento: EXP-12 (uso óptimo de herramientas: cuándo, cuáles, en qué orden)
 
 ---
 
