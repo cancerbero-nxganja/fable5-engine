@@ -17,7 +17,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 - [x] **EXP-07** — Documentar cómo Fable 5 descompone un problema de trading algorítmico
 - [x] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
-- [ ] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
+- [x] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
 - [ ] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
 - [ ] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
 - [ ] **EXP-12** — Documentar cómo Fable 5 usa herramientas de forma óptima (cuándo, cuáles, en qué orden)
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 8
-- Último experimento: EXP-08 (2026-07-15) — detección de bugs de lógica de negocio: son los bugs de código donde el **oráculo honesto (el runtime) enmudece** — honesto sobre la capa sintáctica (¿hace lo que dice?), mudo sobre la semántica (¿lo que dice es correcto?); el bug vive en esa brecha, corre limpio y pasa tests por construcción. Método: reconstruir el invariante del dominio **por fuera del código** y buscar el input que lo viola (protocolo adversarial de EXP-04/06 dentro de un archivo de código); refutar con un ejemplo trabajado de fuente independiente, nunca con otra lectura del código ni un test cuyo golden salió del código (falso acuerdo código↔test del mismo autor, EXP-05). El choque "redondea una vez" vs. "cada línea es un hecho" produjo la regla de frontera **conservación con reconciliación de redondeo** (reparto por mayor-residuo). Meta-hallazgo: **el tipo de oráculo es por pregunta/capa, no por dominio** — refina la tipología de EXP-07
-- Versión actual de la skill: 1.8
-- Próximo experimento: EXP-09 (diseño de esquemas de base de datos sin redundancia)
+- Runs completados: 9
+- Último experimento: EXP-09 (2026-07-15) — diseño de esquemas de base de datos sin redundancia: **"sin redundancia" es una consigna-trampa** (como "detecta", EXP-08). "Redundancia" confunde tres cosas que se separan con dos preguntas de frontera — **frontera A (temporal, EXP-06/07):** ¿la fuente cambia tras el evento? y **frontera B (dueño, EXP-06/08):** ¿la copia tiene dueño mecánico? Tres clases: (1) copia derivable-sin-dueño = redundancia patológica (anomalía de update, normalízala); (2) **snapshot as-of** (precio de línea, dirección de envío) = NO es redundancia, es un registro histórico (consérvala); (3) copia derivada **con dueño declarativo** (columna generada, vista materializada con `CHECK` de conservación) = redundancia gobernada (legítima como decisión de rendimiento). Meta-hallazgo: la frontera as-of de EXP-06 asciende de regla de aplicación a **operador generador de tablas** del esquema; la normalización es oráculo semi-honesto pero **ciego al tiempo** (no distingue snapshot de duplicado) → córrela *después* de la frontera A. Asimetría **a favor** por primera vez: el motor regala dueños mecánicos declarativos, así que "todo invariante, un dueño mecánico" (EXP-06) es aquí lo más barato → mapea cada invariante a una constraint
+- Versión actual de la skill: 1.9
+- Próximo experimento: EXP-10 (evaluar si un resultado estadístico es real o artefacto)
 
 ---
 
