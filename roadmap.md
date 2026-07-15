@@ -25,7 +25,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 ## FASE 3 — Destilación a la skill (runs 13-18)
 
 - [x] **EXP-13** — Refinar la skill con los patrones de razonamiento documentados en Fase 2
-- [ ] **EXP-14** — Agregar ejemplos concretos extraídos de los experimentos anteriores
+- [x] **EXP-14** — Agregar ejemplos concretos extraídos de los experimentos anteriores
 - [ ] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
 - [ ] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
 - [ ] **EXP-17** — Refinar el "modo proxy" con las instrucciones que más reducen la brecha
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 13
-- Último experimento: EXP-13 (2026-07-15) — **destilación (arranca FASE 3)**: "refinar" resultó ser una consigna-trampa sobre la propia tarea — la acreción ya estaba hecha por cada run; la lectura correcta (título de Fase 3) es destilar. Hallazgos: (1) **la tipología del oráculo es de dos niveles** — nivel 1 (EXP-07…11) fija *qué* segunda vista admite el dominio (honesto/ausente/adversarial/diferido/consultable-caro, tipo por-capa no por-dominio), nivel 2 (EXP-12) fija *cómo* comprarla barato; EXP-12 no era un sexto dominio par sino la capa de pago debajo de los cinco. (2) **consigna-trampa promovida de frase repetida (3 apariciones enterradas) a detector nombrado** con 4 instancias medidas (detecta / sin-redundancia / óptimo / refina) — operador transversal, no tic de dominio. (3) el colapso total de las seis secciones en un motor genérico se **falsificó** materializándolo contra un disparador concreto (nullable-en-grupos → subtipo oculto, EXP-09): falla el test de transferibilidad y destruye el payload → destilar = indexar y nombrar, no borrar los específicos (podar es EXP-16). Skill v1.12 → v1.13 con núcleo de oráculo de dos niveles + detector consigna-trampa + bloque de instrucciones EXP-13.
-- Versión actual de la skill: 1.13
-- Próximo experimento: EXP-14 (agregar ejemplos concretos extraídos de los experimentos anteriores — FASE 3, destilación)
+- Runs completados: 14
+- Último experimento: EXP-14 (2026-07-15) — **ejemplos concretos (FASE 3)**: "agregar ejemplos" resultó ser la quinta instancia medida de consigna-trampa — la propiedad real (por EXP-03 aplicado a la propia skill) es *cerrar la semántica de frontera que la prosa de cada instrucción deja abierta*: el ejemplo es el oráculo de la instrucción. Hallazgos: (1) **el ejemplo que transfiere es el que contiene el error refutado** — el par que enseña procedimiento de detección es (lectura ingenua ejecutada → refutación → corrección), no (entrada → salida correcta); ese fue el criterio de admisión al banco. (2) **colocación por índice sobre la infraestructura existente**: las citas `(EXP-XX)` que ya saturan la skill se volvieron punteros resolubles a un banco de CASOS CANÓNICOS keyed por EXP-ID — descartados por materialización el apéndice desconectado (recuperación enterrada, EXP-02) y el inline exhaustivo (43×, EXP-12); cero ediciones sobre las instrucciones = cero riesgo de regresión. (3) **triage de EXP-11 hacia adentro**: 11 casos (no ~100) — solo gana ejemplo la instrucción cuyas lecturas divergen en decisiones caras. Banco: EXP-01 (1/4→3/8), EXP-04 (P=0.82→1.0), EXP-05 (182 vs 23), EXP-06 (precio de línea), EXP-07 (RSI al close), EXP-08+08b (signo/orden/conservación), EXP-09 ($20→$24), EXP-10 (18%/11%/3×/24%), EXP-11 (María), EXP-12 (43×/1.97×/3.7%). Skill v1.13 → v1.14 (+10%, contra 2-3× del inline). Criterio de éxito #2 del roadmap cubierto.
+- Versión actual de la skill: 1.14
+- Próximo experimento: EXP-15 (validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia)
 ---
 
 ## Criterio de éxito
