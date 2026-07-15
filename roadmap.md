@@ -16,7 +16,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 ## FASE 2 — Patrones de razonamiento (runs 7-12)
 
 - [x] **EXP-07** — Documentar cómo Fable 5 descompone un problema de trading algorítmico
-- [ ] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
+- [x] **EXP-08** — Documentar cómo Fable 5 detecta bugs en código con lógica de negocio incorrecta
 - [ ] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
 - [ ] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
 - [ ] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 7
-- Último experimento: EXP-07 (2026-07-14) — descomposición de un problema de trading algorítmico: el trading es el primer dominio con **oráculo existente pero adversarial** (el backtest miente al alza por construcción) → trátalo como sospechoso primario, no juez; descompón por kill-cheapness/fail-fast (lookahead/as-of → costos y capacidad → OOS deflactado por grados de libertad → atribución a factores → ejecución → sizing); el choque "más historia" vs. "no lookahead" produjo la regla de frontera **corrección as-of** (dos timestamps: evento vs. conocimiento). Meta-hallazgo: **tipología del oráculo** (honesto/ausente/adversarial) como pregunta de apertura de dominio. Abre FASE 2
-- Versión actual de la skill: 1.7
-- Próximo experimento: EXP-08 (detección de bugs de lógica de negocio incorrecta)
+- Runs completados: 8
+- Último experimento: EXP-08 (2026-07-15) — detección de bugs de lógica de negocio: son los bugs de código donde el **oráculo honesto (el runtime) enmudece** — honesto sobre la capa sintáctica (¿hace lo que dice?), mudo sobre la semántica (¿lo que dice es correcto?); el bug vive en esa brecha, corre limpio y pasa tests por construcción. Método: reconstruir el invariante del dominio **por fuera del código** y buscar el input que lo viola (protocolo adversarial de EXP-04/06 dentro de un archivo de código); refutar con un ejemplo trabajado de fuente independiente, nunca con otra lectura del código ni un test cuyo golden salió del código (falso acuerdo código↔test del mismo autor, EXP-05). El choque "redondea una vez" vs. "cada línea es un hecho" produjo la regla de frontera **conservación con reconciliación de redondeo** (reparto por mayor-residuo). Meta-hallazgo: **el tipo de oráculo es por pregunta/capa, no por dominio** — refina la tipología de EXP-07
+- Versión actual de la skill: 1.8
+- Próximo experimento: EXP-09 (diseño de esquemas de base de datos sin redundancia)
 
 ---
 
