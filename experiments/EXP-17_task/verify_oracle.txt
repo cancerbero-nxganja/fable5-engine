@@ -1,0 +1,10 @@
+REPORT lift (naive)                = 5.04x
+factor definicion (>=7 / 28-32)    = 2.30x
+factor survivorship (activos/all)  = 1.56x
+factor restante (mix + ruido)      = 1.40x
+reconciliacion: 2.302 * 1.561 * 1.404 = 5.04x  (vs 5.04x)
+
+within-channel, misma definicion (>=7), denominador completo:
+  organic   pre=0.0862  post=0.0837  ratio=0.97x
+  paid      pre=0.0633  post=0.0595  ratio=0.94x
+  referral  pre=0.2053  post=0.1611  ratio=0.78x
