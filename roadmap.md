@@ -20,7 +20,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-09** — Documentar cómo Fable 5 diseña esquemas de base de datos sin redundancia
 - [x] **EXP-10** — Documentar cómo Fable 5 evalúa si un resultado estadístico es real o artefacto
 - [x] **EXP-11** — Documentar cómo Fable 5 maneja ambigüedad en requerimientos
-- [ ] **EXP-12** — Documentar cómo Fable 5 usa herramientas de forma óptima (cuándo, cuáles, en qué orden)
+- [x] **EXP-12** — Documentar cómo Fable 5 usa herramientas de forma óptima (cuándo, cuáles, en qué orden)
 
 ## FASE 3 — Destilación a la skill (runs 13-18)
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 11
-- Último experimento: EXP-11 (2026-07-15) — manejo de ambigüedad en requerimientos: **"maneja la ambigüedad" es la 6ª consigna-trampa** — la ambigüedad no es propiedad del texto sino del par **(texto, decisión)**: solo importa la que hace divergir decisiones caras. La peligrosa es **invisible desde dentro** (EXP-05 aplicado a la lectura): leer compila con defaults y el rellenado no deja rastro — releer es segunda cuenta, no segunda vista; el detector es material: **caminar una entidad concreta con nombre y fechas por el texto** (el ejemplo de EXP-03 invertido: allí cerraba fronteras, aquí las abre). Números calculados (clase A, `experiments/EXP-11_sim.py`): un párrafo de 3 frases = 8 dimensiones × 2–3 lecturas = **864 implementaciones**; elección silenciosa con 80% de acierto por dimensión → **16.8%** de acertar la intención completa (falsifica "elige la interpretación más útil" del Paso 1 v1.10 — primera auto-falsificación de la skill); triage divergencia × irreversibilidad → 3 de 8 dimensiones (auth, PII, reversibilidad — todas invariantes del dominio) concentran **92.7%** del riesgo; sin canal de consulta la lectura menos probable pero barata de corregir domina **5.3×** (minimax-regret ≠ máx-verosimilitud). Taxonomía: ambigüedad **léxica / de frontera / de omisión** (la de omisión — auth, PII, tenancy — no tiene frase que releer). Tipología del oráculo completa con el 5º tipo: **consultable-caro** (el autor: responde, pero cada consulta es un round-trip y reacciona a concreciones mejor de lo que especifica → lote decisión+default, ejemplo caminado en vez de paráfrasis)
-- Versión actual de la skill: 1.11
-- Próximo experimento: EXP-12 (uso óptimo de herramientas: cuándo, cuáles, en qué orden)
+- Runs completados: 12
+- Último experimento: EXP-12 (2026-07-15) — uso óptimo de herramientas: **"usa herramientas de forma óptima" es la 7ª consigna-trampa** — la optimalidad no es de la llamada sino de la **economía de la afirmación que respalda**. La herramienta es la instancia material del principio diferencial (EXP-05): el canal más barato por el que el mundo puede desmentirte. CUÁNDO: disparador **por afirmación** (única-fuente-es-mi-generación + clase A–G), filtro económico `p·d·C > c` — con error 30× la llamada, verificar domina desde p>3.7% [CALC2] ("verifica la clase C" pasa de regla dura a teorema del modelo). CUÁL: por **refutación, no afinidad temática**; la observación **más estrecha que decide la pregunta** — leer el archivo entero para una pregunta puntual costó **43× más contexto que grep+lectura dirigida [CALC3, medido sobre este repo]** y el excedente fabrica la zona de fallo de recuperación enterrada (EXP-02): primera defensa contra el **sobre-uso** (la skill solo defendía el sub-uso). ORDEN: refutadores por **costo/p_kill ascendente** — exactamente óptimo, verificado por fuerza bruta en **2000/2000 instancias [CALC1]**; el orden "lógico de construcción" paga **1.97×** el óptimo (kill-cheapness de EXP-07 formalizada con factor de pérdida medido); observaciones independientes en **lote paralelo** (k round-trips → 1 [CALC4]; "planifica la frontera, no el camino"); secuencia sana observar → computar → mutar → verificar, mutaciones entre dos observaciones. Nuevo detector doble: **cero silencioso** (búsqueda sin resultados ≠ ausencia hasta validar el patrón sobre un positivo conocido) y **verde-nunca-visto-rojo** — "no encontró" y "no podía encontrar" son indistinguibles desde dentro. FASE 2 completa.
+- Versión actual de la skill: 1.12
+- Próximo experimento: EXP-13 (refinar la skill con los patrones de razonamiento de Fase 2 — arranca FASE 3, destilación)
 
 ---
 
