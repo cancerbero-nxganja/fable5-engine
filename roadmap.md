@@ -27,7 +27,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-13** — Refinar la skill con los patrones de razonamiento documentados en Fase 2
 - [x] **EXP-14** — Agregar ejemplos concretos extraídos de los experimentos anteriores
 - [x] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
-- [ ] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
+- [x] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
 - [ ] **EXP-17** — Refinar el "modo proxy" con las instrucciones que más reducen la brecha
 - [ ] **EXP-18** — Generar versión 2.0 de la skill con todo lo aprendido
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 15
-- Último experimento: EXP-15 (2026-07-15) — **primera validación medida (FASE 3)**: revisión cuantitativa con 7 defectos plantados, oráculo verificado por ejecución antes de correr, rúbrica pre-registrada, tres condiciones (instrumento y outputs en `experiments/EXP-15_task/` y `EXP-15_outputs/`). Resultado: **Fable nativo 20/20 (0 cifras erróneas, 26k tokens) · Sonnet+skill 18/20 (2 cifras erróneas, 91k) · Sonnet base 20/20 (1 cifra errónea, 39k)** — cierre de brecha `(B−C)/(A−C)` **incomputable: efecto techo** (el baseline no falla en trampas canónicas de quant review; el criterio #1 exige un instrumento donde el baseline puntúe 30–70%). Hallazgos: (1) la **brecha residual real** no está en cobertura sino en *disciplina de escala sobre números propios* — ambos Sonnets entregaron cifras auto-derivadas rotas por escala (×15.9) con confianza; Fable cero. (2) **la corrección parcial blanquea el bug restante**: Sonnet+skill corrigió el lookahead y usó "Sharpe corregido 9.31" sin preguntarse por qué su propia cifra seguía disparando el detector Sharpe>3–5 que tenía cargado — el detector se re-aplica a cada residuo, con reconciliación multiplicativa (89.11 = 15.87 × 5.61 → 0.59). (3) la **transferencia de procedimiento es real** (premisa invertida, kill-cheapness, distribución nula de 200 draws, cota SBB) pero costó 2.3× tokens y −2 de cobertura: el protocolo largo fabricó recuperación enterrada sobre el artefacto a auditar. Skill v1.14 → v1.15 (bloque EXP-15 + 2 señales de detector + operador transversal "corrección parcial blanquea" + CASO EXP-15).
-- Versión actual de la skill: 1.15
-- Próximo experimento: EXP-16 (identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido — requiere primero calibrar un banco de problemas donde Sonnet base puntúe 30–70%)
+- Runs completados: 16
+- Último experimento: EXP-16 (2026-07-15) — **diagnóstico de impacto por instrucción SIN ablación** (el instrumento de EXP-15 sigue en efecto techo, así que un control que no falla daría 136 nulos). Método: el impacto tiene **oráculo diferido** (ablación existe pero no disponible al decidir, como EXP-10) → sustituido por **clase-de-evidencia + test de subsunción**; el ruido se **midió**, no se opinó (Clase A, EXP-04). Resultado medido sobre la skill v1.15 (574 líneas, 136 bullets): las ideas núcleo están **restated en 6–14 secciones cada una** (detección diferencial: 14 secciones; snapshot/as-of: 52 ocurrencias en 11; Clase C volátil: 10; consigna-trampa: 6; dueño mecánico: 7). Hallazgos: (1) **"impacto vs ruido" es consigna-trampa** — la estructura real tiene **3 clases** (load-bearing / inerte / **activo de valor negativo**), porque EXP-15 midió masa con Δcobertura = −2 por desplazamiento de atención. (2) El **ruido dominante NO es ninguna instrucción errónea** —no hay una sola sin evidencia— **es la multiplicidad de restatements**, y por el −2 es ruido **activo**. (3) Cuatro tiers: T1 medido (solo las 3 instrucciones de EXP-15) · T2 motor núcleo (generativo, irreducible) · T3 instancias-cache (regenerables por el motor, valor = pedagogía + cache) · T4 duplicación. (4) **Frontera dura: EXP-16 identifica, no poda** — cortar sin banco calibrado (30–70%) repite el −2 de EXP-15 (riesgo −4); la poda es de EXP-17/18. Skill v1.15 → v1.16 (sección "Impacto de instrucciones y ruido" con 7 instrucciones + operador transversal "triage de 3 clases" + 2 señales de detector + CASO EXP-16; **sin podar** ninguna sección, por respeto a la frontera 518).
+- Versión actual de la skill: 1.16
+- Próximo experimento: EXP-17 (refinar el "modo proxy" con las instrucciones que más reducen la brecha — es la **poda** que EXP-16 diagnosticó pero no ejecutó; su precondición sigue siendo el banco calibrado donde el baseline puntúe 30–70%, para verificar que cada supresión no pierde cobertura)
 ---
 
 ## Criterio de éxito
