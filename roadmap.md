@@ -29,7 +29,7 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 - [x] **EXP-15** — Validar la skill: correr el mismo problema con Fable 5 nativo vs skill en Sonnet — medir diferencia
 - [x] **EXP-16** — Identificar qué instrucciones de la skill tienen mayor impacto y cuáles son ruido
 - [x] **EXP-17** — Refinar el "modo proxy" con las instrucciones que más reducen la brecha
-- [ ] **EXP-18** — Generar versión 2.0 de la skill con todo lo aprendido
+- [x] **EXP-18** — Generar versión 2.0 de la skill con todo lo aprendido
 
 ## FASE 4 — Especialización por dominio (runs 19-24)
 
@@ -44,10 +44,10 @@ Cada run del loop lee este archivo, elige el próximo experimento sin completar,
 
 ## Estado actual
 
-- Runs completados: 17
-- Último experimento: EXP-17 (2026-07-15) — **la poda del modo proxy, medida.** Instrumento nuevo (retención de producto: 5.04× fabricado = 2.30 definición × 1.56 survivorship × 1.40 mix, efecto real nulo, corrección falsa incrustada, pseudo-replicación). Calibración en dos intentos: framing "audita" → Sonnet base **20/20** (techo; defectos no-canónicos NO rompen el techo — el framing que nombra la conducta la activa); framing neutro → C2 = **17/20**, con los 3 puntos perdidos exactamente en el cluster de EXP-15 (R1 reconciliación multiplicativa, R2 residuo, P3 veredicto: entregó "1.46× real" sin correr la estratificación que él mismo pidió). Resultados (prompt neutro literal idéntico): A Fable 20/20 (28k tok) · B_full 20/20 (96.5k, **2.36×** baseline — costo replicado de EXP-15) · **B_proxy (100 líneas) 20/20 (43.8k, 1.07×)**. Cierre de brecha 1.0 ambas skills (n=1, denominador 3 — baja potencia, reportado como tal). El proxy fue la única condición con la reconciliación explícita "1.40 × 2.30 × 1.56 = 5.04" — "un hecho, un hogar" medido sobre el output. Proxy validado en `experiments/EXP-17_proxy/fable5_proxy_v2.md`; skill v1.16 → v1.17 (sección EXP-17 con 6 instrucciones + 2 señales de detector + CASO EXP-17; el archivo maestro NO se podó — esa es EXP-18).
-- Versión actual de la skill: 1.17
-- Próximo experimento: EXP-18 (generar la versión 2.0 de la skill con todo lo aprendido — la poda del archivo maestro; precondición actualizada por EXP-17: replicar la paridad del proxy en un **segundo instrumento** de género distinto antes de cortar, y medir con rúbrica de disciplina + economía de tokens, no con la banda 30–70% que resultó inalcanzable)
+- Runs completados: 18 — **FASE 3 completa.**
+- Último experimento: EXP-18 (2026-07-16) — **la versión 2.0 de la skill: la poda del archivo maestro, autorizada por evidencia.** Se cumplió la precondición de EXP-17 (replicar la paridad del proxy en un 2º instrumento de género distinto antes de cortar): instrumento nuevo de **lógica de negocio en código** (motor de facturación `billing.py` con 5 defectos plantados —as-of, ciclo hardcodeado, signo, orden descuento/impuesto, conservación líneas≠total—, oráculo independiente de la política escrita, framing **neutro** "nota go/no-go"), 4 condiciones con Sonnet real vía subagentes. Resultados (prompt neutro idéntico): **A_fable 20/20 · C_base 20/20 (38.2k tok) · B_proxy 20/20 (45.3k, 1.19×) · B_full 20/20 (99.0k, 2.59×)** → el proxy iguala al archivo completo a **46% del costo** (EXP-17 midió 45% en estadística — **paridad replicada en 2 géneros**). Techo del baseline por **3ª vez** (A=C=20 → cierre de brecha incomputable): cuando el invariante se provee explícito, la brecha Fable↔Sonnet no aparece en cobertura ni disciplina; el único diferencial medible entre las 495 líneas extra y el proxy es **costo** (+160% tokens, 2× tool_uses, 0 puntos). v2.0: EL MOTOR promovido al frente como bloque canónico y default de transferencia (Regla 0 + 3 disciplinas de EXP-15 titulares + checklist de cierre); poda por **de-duplicación** (la tipología del oráculo en Paso 2 → cita a EL MOTOR; frontera dura EXP-13/16: no amputar específicos), + sección/CASO EXP-18. Instrumento y outputs verbatim en `experiments/EXP-18_*`.
+- Versión actual de la skill: 2.0
+- Próximo experimento: EXP-19 (FASE 4 — skill especializada para trading/backtests). Pendiente heredado de EXP-18: para reabrir la brecha Fable↔Sonnet (saturada en cobertura y disciplina 3 veces) hace falta un **instrumento de invariante OCULTO** —que fuerce al modelo a importar el invariante por su cuenta— donde la textura de reconciliación (más profunda en A/B_full que en C/B_proxy sin mover score) sí discrimine.
 ---
 
 ## Criterio de éxito
